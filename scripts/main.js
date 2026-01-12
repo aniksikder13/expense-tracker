@@ -1,3 +1,4 @@
+import { formReader } from './modules/form-reader.js';
 const form = document.getElementById('expense-form');
 
 const expenseData = [];
@@ -5,10 +6,9 @@ const expenseData = [];
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const data = new FormData(form);
-    const amount = data.get('amount');
-    const description = data.get('description');
-    const date = data.get('date');
+    const formData = formReader(form);
+
+    expenseData.unshift(formData);
 
     console.log(expenseData);
 });
