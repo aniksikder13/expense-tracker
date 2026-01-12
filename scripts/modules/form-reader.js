@@ -3,7 +3,8 @@ import { invalidateInput } from "./dom.js";
 export function formReader(form) {
     const inputs = form.querySelectorAll('input');
     const result = {};
-
+    result['id'] = Date.now();
+    
     for (const input of inputs) {
         if (input.name==='amount') {
             const isValid = invalidateInput(input);
@@ -14,7 +15,7 @@ export function formReader(form) {
         } else{
             result[input.name] = input.value;
         }
-        // input.value = '';
+        input.value = '';
     }
     return result;
 }

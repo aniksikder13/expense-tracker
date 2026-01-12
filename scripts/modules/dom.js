@@ -1,23 +1,31 @@
 import { calculateTotal } from "./calculator.js";
 
-const totalAmountElement = document.getElementById('total-amount');
-
 // Create new row in expense table
-export function createRow(expenseData) {
-    console.log(expenseData);
-    const expenseTableBody = document.getElementById('expense-table-body');
-    const tr = document.createElement('tr');
-    if (!expenseData && expenseData?.length === 0) {
-        tr.innerHTML = `<td colspan="4">No expenses added yet.</td>`;
-    } else {
-        tr.innerHTML += `
-            <td>${expenseData?.description}</td>
-            <td>${expenseData?.amount.toFixed(2)}</td>
-            <td>${expenseData?.date}</td>
-            <td><button type="button" class="outline secondary">Delete</button></td>
-            `
+export function updateRow(expenseData) {
+ const expenseTableBody = document.getElementById('expense-table-body');
+    expenseTableBody.innerHTML = '';
+
+    if (!expenseData || expenseData.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="4">No expenses added yet.</td>`;
+        expenseTableBody.appendChild(row);
+        return;
     }
-    expenseTableBody.prepend(tr);
+
+    expenseData.forEach(expense => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${expense.description}</td>
+            <td>$${expense.amount.toFixed(2)}</td>
+            <td>${expense.date}</td>
+            <td>
+                <button class="delete" node-id="${expense.id}">
+                    Delete
+                </button>
+            </td>
+        `;
+        expenseTableBody.appendChild(row);
+    });
 }
 
 // invalidate form input
