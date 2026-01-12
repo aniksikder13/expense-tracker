@@ -7,7 +7,7 @@ export function updateRow(expenseData) {
 
     if (!expenseData || expenseData.length === 0) {
         const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="4">No expenses added yet.</td>`;
+        row.innerHTML = `td colspan="4" style="color: blueviolet;">No expenses added yet.</td>`;
         expenseTableBody.appendChild(row);
         return;
     }

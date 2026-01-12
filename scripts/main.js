@@ -22,9 +22,9 @@ form.addEventListener('submit', function(event) {
 
 // Handle delete button click
 document.querySelector('#expense-table-body').addEventListener('click', function(event) {
-    const nodeId = event.target.getAttribute('node-id');
-
+    
     if (event.target.tagName === 'BUTTON') {
+        const nodeId = event.target.getAttribute('node-id');
         expenseData = expenseData.filter(expense => expense.id !== +nodeId);
         updateTotalAmount(expenseData);
         updateRow(expenseData);
